@@ -1,4 +1,4 @@
-import { GraduationCap, FileText, Presentation, BookOpen, ExternalLink, Download } from "lucide-react"
+import { GraduationCap, FileText, Presentation, BookOpen, ExternalLink, Download, Award } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
@@ -8,75 +8,76 @@ import { cn } from "@/lib/utils"
 
 const publications = [
   {
-    title: "Cross-Modal Fashion Retrieval with Vision-Language Models",
-    venue: "IEEE Conference on Computer Vision and Pattern Recognition (CVPR)",
-    year: "2025",
+    title: "ChatClothes: Conversational Virtual Try-On with Diffusion Models",
+    venue: "IVCNZ 2025",
+    doi: "10.1109/IVCNZ67716.2025.11281834",
     abstract:
-      "We propose a novel framework for cross-modal fashion retrieval that bridges visual and textual representations using large vision-language models. Our approach achieves state-of-the-art results on standard fashion retrieval benchmarks.",
-    tags: ["Computer Vision", "NLP", "Fashion AI"],
+      "A conversational virtual try-on system combining diffusion-based garment generation (OOTDiffusion + LoRA) with lightweight YOLO12n-LC classification and local LLM conversational control (DeepSeek via Ollama). Achieves FID 28.5 (19% improvement), SSIM 0.89 (8.5% improvement), and 94.2% classification accuracy on a Raspberry Pi 5 with sub-10s total latency. Validated through a 50-person user study achieving 87% success rate.",
+    authors: "Kien Tran, Minh Nguyen, Wei Qi Yan",
+    status: "Published",
+    tags: ["Computer Vision", "Diffusion Models", "Virtual Try-On"],
   },
   {
-    title: "Diffusion-Based Data Augmentation for Long-Tailed Visual Recognition",
-    venue: "European Conference on Computer Vision (ECCV)",
-    year: "2024",
+    title: "Clothes Recognition Based on Lightweight Deep Learning Models",
+    venue: "IGI Global — Aesthetics in Creative Technology",
+    year: "2026",
     abstract:
-      "We leverage diffusion models to generate high-quality synthetic samples for underrepresented classes in long-tailed visual recognition tasks. Experiments show consistent improvements across multiple benchmark datasets.",
-    tags: ["Diffusion Models", "Data Augmentation", "Computer Vision"],
-  },
-  {
-    title: "Efficient Multimodal Fusion for Egocentric Activity Understanding",
-    venue: "International Conference on Machine Learning (ICML)",
-    year: "2024",
-    abstract:
-      "A lightweight multimodal fusion architecture that combines egocentric video, audio, and inertial sensor data for real-time activity recognition on wearable devices.",
-    tags: ["Multimodal Learning", "Egocentric Vision", "Efficient AI"],
+      "A lightweight deep learning approach for clothes recognition leveraging efficient architectures for real-time fashion classification on edge devices.",
+    status: "Under review (Chapter submission ID: 211225-092240)",
+    tags: ["Computer Vision", "Lightweight Models", "Fashion AI"],
   },
 ]
 
 const posters = [
   {
     title: "ChatClothes: Interactive Fashion Recommendation System",
-    conference: "NeurIPS Creative AI Track",
+    conference: "AUT Research Symposium",
     date: "Dec 2024",
   },
   {
-    title: "Visual Grounding in Egocentric Video Streams",
-    conference: "CVPR Workshop on Egocentric Vision",
+    title: "Visual Analysis in Egocentric Video Streams",
+    conference: "AUT Computer Science Seminar",
     date: "Jun 2025",
   },
   {
     title: "Synthetic Data Generation with Conditional Diffusion",
-    conference: "ICLR Workshop on Generative Models",
+    conference: "AUT Workshop on Generative Models",
     date: "May 2024",
-  },
-  {
-    title: "Multimodal Alignment for Cross-Domain Retrieval",
-    conference: "ECCV Workshop on Vision & Language",
-    date: "Oct 2024",
   },
 ]
 
 const presentations = [
   {
-    title: "The Future of Multimodal Fashion AI",
-    event: "AI in Retail Summit",
-    date: "Mar 2025",
+    title: "ChatClothes: Virtual Try-On System Demo",
+    event: "Master's Thesis Presentation, Auckland University of Technology",
+    date: "2025",
     description:
-      "Keynote presentation on integrating diffusion models and LLMs for next-generation fashion recommendation and virtual try-on experiences.",
+      "Live demonstration of the ChatClothes system running on a Raspberry Pi 5, showcasing real-time conversational virtual try-on with diffusion-based garment generation and YOLO classification.",
   },
   {
-    title: "Building Scalable Multimodal Retrieval Systems",
-    event: "ML Systems Workshop @ NeurIPS",
-    date: "Dec 2024",
+    title: "Hyperspectral Imaging for Kiwifruit Ripeness Classification",
+    event: "Summer Research Project, Auckland University of Technology",
+    date: "2025",
     description:
-      "Technical deep-dive into production-grade multimodal embedding pipelines, covering indexing strategies and latency optimization for real-time retrieval.",
+      "Presentation on using hyperspectral imaging techniques combined with machine learning for non-destructive ripeness classification of kiwifruit.",
+  },
+]
+
+const awards = [
+  {
+    title: "First Class Honours",
+    organization: "Master of Computer and Information Sciences, Auckland University of Technology",
+    year: "2025",
   },
   {
-    title: "From Pixels to Semantics: Visual Understanding in the Wild",
-    event: "University of Cambridge, Computer Lab Seminar",
-    date: "Nov 2024",
-    description:
-      "Invited talk on bridging low-level visual features with high-level semantic reasoning for robust scene understanding in unconstrained environments.",
+    title: "Science and Technology Achievement Award (Smart Manufacturing)",
+    organization: "Hebei Province, China",
+    year: "2020",
+  },
+  {
+    title: "National Scholarship",
+    organization: "Hebei University of Science and Technology",
+    year: "2013",
   },
 ]
 
@@ -87,7 +88,7 @@ export default function ResearchPage() {
       <div className="space-y-2 pb-8">
         <h1 className="text-3xl font-bold tracking-tight">Research &amp; Publications</h1>
         <p className="text-muted-foreground text-lg">
-          Academic contributions in AI, computer vision, and software engineering.
+          Academic contributions in AI, computer vision, and multimodal learning.
         </p>
       </div>
 
@@ -100,30 +101,30 @@ export default function ResearchPage() {
           <CardHeader>
             <div className="flex items-center gap-3">
               <GraduationCap className="size-6 text-primary" />
-              <CardTitle className="text-xl">ChatClothes: Multimodal AI for Fashion Recommendation</CardTitle>
+              <CardTitle className="text-xl">ChatClothes: Conversational Virtual Try-On with Diffusion Models</CardTitle>
             </div>
             <CardDescription>
-              Institution &middot; Expected 2025
+              Auckland University of Technology &middot; 2025 &middot; Supervisor: Dr. Wei Qi Yan
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
             <p className="text-muted-foreground leading-relaxed">
-              This thesis explores the intersection of diffusion models and large language models to create an
-              interactive, multimodal fashion recommendation system. By combining text-based conversational
-              understanding with image generation capabilities, ChatClothes enables users to describe their style
-              preferences in natural language and receive personalized outfit recommendations with photorealistic
-              visual previews. The system addresses key challenges in multimodal alignment, conditioned image
-              synthesis, and cross-modal retrieval within the fashion domain.
+              Master of Computer and Information Sciences (First Class Honours). Passed, completed 6 months early.
+              This thesis explores multimodal virtual try-on by combining diffusion-based garment generation
+              (OOTDiffusion + LoRA) with lightweight YOLO12n-LC classification and local LLM conversational control
+              (DeepSeek via Ollama). The system achieves FID 28.5 (19% improvement), SSIM 0.89 (8.5% improvement), and
+              94.2% classification accuracy. Deployed on Raspberry Pi 5 with &lt;10s total latency. Validated through a
+              50-person user study achieving 87% success rate.
             </p>
             <div className="flex flex-wrap gap-2">
               <Badge variant="secondary">Computer Vision</Badge>
-              <Badge variant="secondary">Natural Language Processing</Badge>
-              <Badge variant="secondary">Multimodal Learning</Badge>
               <Badge variant="secondary">Diffusion Models</Badge>
+              <Badge variant="secondary">Multimodal Learning</Badge>
+              <Badge variant="secondary">Lightweight Deployment</Badge>
             </div>
             <div className="flex flex-wrap gap-3 pt-2">
               <Button
-                render={<a href="#" />}
+                render={<a href="http://hdl.handle.net/10292/20210" />}
                 className={cn("gap-2")}
               >
                 <FileText className="size-4" />
@@ -131,11 +132,11 @@ export default function ResearchPage() {
               </Button>
               <Button
                 variant="outline"
-                render={<a href="#" />}
+                render={<a href="https://doi.org/10.10292/20210" />}
                 className={cn("gap-2")}
               >
-                <Presentation className="size-4" />
-                Research Poster
+                <BookOpen className="size-4" />
+                DOI: 10.10292/20210
               </Button>
             </div>
           </CardContent>
@@ -151,10 +152,20 @@ export default function ResearchPage() {
           {publications.map((pub) => (
             <Card key={pub.title}>
               <CardHeader>
-                <CardTitle>{pub.title}</CardTitle>
-                <CardDescription>
-                  {pub.venue} &middot; {pub.year}
-                </CardDescription>
+                <div className="flex items-start justify-between gap-4">
+                  <div className="space-y-1">
+                    <CardTitle>{pub.title}</CardTitle>
+                    <CardDescription>
+                      {pub.authors && <span>{pub.authors} &middot; </span>}
+                      {pub.venue}{pub.year ? ` &middot; ${pub.year}` : ""}
+                    </CardDescription>
+                  </div>
+                  {pub.status && (
+                    <Badge variant={pub.status === "Published" ? "default" : "outline"} className="shrink-0">
+                      {pub.status}
+                    </Badge>
+                  )}
+                </div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-muted-foreground leading-relaxed">{pub.abstract}</p>
@@ -166,24 +177,17 @@ export default function ResearchPage() {
                   ))}
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    render={<a href="#" />}
-                    className={cn("gap-1.5")}
-                  >
-                    <ExternalLink className="size-3.5" />
-                    Paper
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    render={<a href="#" />}
-                    className={cn("gap-1.5")}
-                  >
-                    <BookOpen className="size-3.5" />
-                    BibTeX
-                  </Button>
+                  {pub.doi && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      render={<a href={`https://doi.org/${pub.doi}`} />}
+                      className={cn("gap-1.5")}
+                    >
+                      <ExternalLink className="size-3.5" />
+                      DOI
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -196,7 +200,7 @@ export default function ResearchPage() {
       {/* Research Posters */}
       <section className="pt-12 pb-8">
         <h2 className="text-2xl font-semibold tracking-tight pb-6">Research Posters</h2>
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {posters.map((poster) => (
             <Card key={poster.title} size="sm">
               <CardHeader>
@@ -223,7 +227,7 @@ export default function ResearchPage() {
 
       <Separator />
 
-      {/* Academic Presentations */}
+      {/* Presentations */}
       <section className="pt-12 pb-8">
         <h2 className="text-2xl font-semibold tracking-tight pb-6">Presentations</h2>
         <div className="grid gap-6">
@@ -238,6 +242,28 @@ export default function ResearchPage() {
               <CardContent>
                 <p className="text-muted-foreground leading-relaxed">{talk.description}</p>
               </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* Awards & Achievements */}
+      <section className="pt-12 pb-8">
+        <h2 className="text-2xl font-semibold tracking-tight pb-6">Awards &amp; Achievements</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {awards.map((award) => (
+            <Card key={award.title} size="sm">
+              <CardHeader>
+                <div className="flex items-center gap-2">
+                  <Award className="size-5 text-primary shrink-0" />
+                  <CardTitle className="text-base">{award.title}</CardTitle>
+                </div>
+                <CardDescription>
+                  {award.organization} &middot; {award.year}
+                </CardDescription>
+              </CardHeader>
             </Card>
           ))}
         </div>

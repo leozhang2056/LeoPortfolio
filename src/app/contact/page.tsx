@@ -62,7 +62,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="text-sm font-medium">Email</p>
-                <p className="text-sm text-muted-foreground">hello@leo.dev</p>
+                <p className="text-sm text-muted-foreground">leozhang2056@gmail.com</p>
               </div>
             </div>
 
@@ -73,7 +73,7 @@ export default function ContactPage() {
               <div>
                 <p className="text-sm font-medium">GitHub</p>
                 <Link
-                  href="https://github.com"
+                  href="https://github.com/leozhang2056"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
@@ -90,7 +90,7 @@ export default function ContactPage() {
               <div>
                 <p className="text-sm font-medium">LinkedIn</p>
                 <Link
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/leo-zhang-305626280/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
@@ -106,9 +106,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="text-sm font-medium">Location</p>
-                <p className="text-sm text-muted-foreground">
-                  Available for remote opportunities
-                </p>
+                <p className="text-sm text-muted-foreground">Auckland, New Zealand</p>
               </div>
             </div>
           </div>
@@ -224,13 +222,13 @@ export default function ContactPage() {
       <div className="text-center space-y-6 mb-16">
         <h2 className="text-xl font-semibold">Connect With Me</h2>
         <div className="flex items-center justify-center gap-3">
-          <Button variant="outline" size="icon" render={<Link href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" />}>
+          <Button variant="outline" size="icon" render={<Link href="https://github.com/leozhang2056" target="_blank" rel="noopener noreferrer" aria-label="GitHub" />}>
             <ExternalLink className="h-5 w-5" />
           </Button>
-          <Button variant="outline" size="icon" render={<Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" />}>
+          <Button variant="outline" size="icon" render={<Link href="https://www.linkedin.com/in/leo-zhang-305626280/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" />}>
             <Link2 className="h-5 w-5" />
           </Button>
-          <Button variant="outline" size="icon" render={<Link href="mailto:hello@leo.dev" aria-label="Email" />}>
+          <Button variant="outline" size="icon" render={<Link href="mailto:leozhang2056@gmail.com" aria-label="Email" />}>
             <Mail className="h-5 w-5" />
           </Button>
         </div>
@@ -241,7 +239,7 @@ export default function ContactPage() {
         <CardContent className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-6">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <h3 className="font-semibold">Open to Opportunities</h3>
+              <h3 className="font-semibold">Open to Opportunities — Auckland, NZ</h3>
               <Badge
                 variant="outline"
                 className="border-green-500/50 text-green-600 dark:text-green-400"
@@ -250,9 +248,8 @@ export default function ContactPage() {
               </Badge>
             </div>
             <p className="text-sm text-muted-foreground max-w-lg">
-              Interested in full-stack, mobile, and AI/ML engineering roles.
-              Particularly excited about remote positions at innovative
-              companies building impactful products.
+              Based in Auckland, NZ. Open to full-stack, mobile, and AI/ML engineering roles — full-time, on-site, or hybrid.
+              Hold a Post-Study Work Visa with full work rights.
             </p>
           </div>
           <Button variant="default" render={<Link href="/resume" />}>View Resume</Button>

@@ -1,51 +1,61 @@
 import Link from "next/link"
-import { Download, FileText, Smartphone, Server, Brain, Briefcase } from "lucide-react"
+import { Download, FileText, Smartphone, Server, Brain, Briefcase, MapPin, Mail, Award } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 
+const personalInfo = {
+  name: "Yuchao Zhang (Leo Zhang)",
+  email: "leozhang2056@gmail.com",
+  phone: "+64 27 385 0794",
+  location: "Auckland, New Zealand",
+}
+
 const resumes = [
   {
     title: "Android Developer",
     icon: Smartphone,
-    focus: "Kotlin, Jetpack Compose, MVVM, Hilt, Room",
+    focus: "Kotlin, Jetpack Compose, MVVM, Hilt, NDK, Android SDK",
     highlights: [
-      "5+ Android apps in production",
-      "Enterprise mobile experience",
-      "Offline-first architecture",
+      "10+ years of Android development experience across consumer and enterprise domains",
+      "8+ apps shipped on Google Play and enterprise markets",
+      "NDK TCP/UDP sockets achieving sub-200ms real-time messaging for industrial IoT",
+      "MVVM + Clean Architecture applied consistently across 12+ Android projects",
     ],
   },
   {
-    title: "Backend Developer",
+    title: "Backend / Full-Stack Engineer",
     icon: Server,
-    focus: "Spring Boot, Java, Microservices, PostgreSQL, Docker",
+    focus: "Spring Cloud, Java, Microservices, MySQL, Redis, Docker",
     highlights: [
-      "Industrial system design",
-      "High-throughput APIs",
-      "Clean Architecture",
+      "Smart factory solution deployed across 10+ manufacturing sites, improving efficiency by 30%+",
+      "Enterprise instant messaging platform serving 5K+ daily active users",
+      "Spring Cloud microservices with event-driven architecture and distributed transactions",
+      "Full-stack delivery from embedded terminal firmware to cloud management dashboards",
     ],
   },
   {
     title: "AI Engineer",
     icon: Brain,
-    focus: "OpenAI, LangChain, Computer Vision, Diffusion Models",
+    focus: "PyTorch, OpenCV, YOLO, Diffusion Models, LLM, Computer Vision",
     highlights: [
-      "Master thesis in AI",
-      "Multimodal systems",
-      "Production AI pipelines",
+      "ChatClothes thesis accepted at IVCNZ 2025 — virtual try-on with multimodal AI",
+      "Custom YOLO12n-LC model achieving 94.2% mAP on embedded industrial datasets",
+      "Deployed real-time object detection on Raspberry Pi with <100ms inference latency",
+      "LoRA fine-tuning of diffusion models for domain-specific image generation tasks",
     ],
   },
 ]
 
 const coreCompetencies = [
-  "Kotlin", "Java", "Spring Boot", "Python", "TypeScript",
-  "Jetpack Compose", "React", "Next.js",
-  "MVVM", "Clean Architecture", "Microservices",
-  "PostgreSQL", "MongoDB", "Room",
-  "Docker", "Kubernetes", "CI/CD",
-  "OpenAI", "LangChain", "Computer Vision",
+  "Kotlin", "Java", "Spring Cloud", "Python", "TypeScript",
+  "Jetpack Compose", "Vue.js", "React", "MVVM", "Clean Architecture",
+  "Microservices", "MySQL", "Redis", "MongoDB", "Docker",
+  "Kubernetes", "Jenkins", "CI/CD", "PyTorch", "YOLO",
+  "OpenCV", "Diffusion Models", "NDK", "RFID", "MQTT",
+  "Linux", "Azure", "Git",
 ]
 
 export default function ResumePage() {
@@ -114,21 +124,46 @@ export default function ResumePage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
+            {/* Personal Info */}
+            <div>
+              <h3 className="text-base font-semibold mb-3">{personalInfo.name}</h3>
+              <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+                <span className="inline-flex items-center gap-1.5">
+                  <Mail className="h-4 w-4" />
+                  {personalInfo.email}
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Smartphone className="h-4 w-4" />
+                  {personalInfo.phone}
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <MapPin className="h-4 w-4" />
+                  {personalInfo.location}
+                </span>
+              </div>
+            </div>
+
+            <Separator />
+
+            {/* Professional Summary */}
             <div>
               <h3 className="text-sm font-semibold mb-2 uppercase tracking-wider text-muted-foreground">
                 Professional Summary
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Software engineer with 10+ years of experience spanning Android
-                development, backend systems, and artificial intelligence.
-                Proven track record of delivering production-grade applications
-                across mobile, cloud, and AI domains. Passionate about clean
-                architecture, scalable systems, and mentoring engineering teams.
+                Senior software engineer with 10+ years of experience delivering mobile
+                and IoT solutions across industrial and enterprise environments.
+                Experienced in leading cross-functional development, improving system
+                reliability, and collaborating with product, QA, and operations teams.
+                Strong background in Android architecture, real-time systems, and applied
+                AI, with a Master&apos;s degree in Computer and Information Sciences from
+                AUT (First Class Honours).
               </p>
             </div>
 
             <Separator />
 
+            {/* Core Competencies */}
             <div>
               <h3 className="text-sm font-semibold mb-3 uppercase tracking-wider text-muted-foreground">
                 Core Competencies
@@ -144,30 +179,55 @@ export default function ResumePage() {
 
             <Separator />
 
-            <div className="grid gap-4 md:grid-cols-3">
+            {/* Experience / Education / Certifications */}
+            <div className="grid gap-6 md:grid-cols-3">
               <div>
-                <h3 className="text-sm font-semibold mb-2 uppercase tracking-wider text-muted-foreground">
+                <h3 className="text-sm font-semibold mb-2 uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+                  <Briefcase className="h-4 w-4" />
                   Experience
                 </h3>
-                <p className="text-sm text-muted-foreground">
-                  10+ years software engineering
-                </p>
+                <div className="space-y-3 text-sm text-muted-foreground">
+                  <div>
+                    <p className="font-medium text-foreground">AI Research Engineer</p>
+                    <p>AUT — 2024–2026</p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground">Full-stack Engineer</p>
+                    <p>Chunxiao Technology — 2013–2024</p>
+                  </div>
+                </div>
               </div>
               <div>
-                <h3 className="text-sm font-semibold mb-2 uppercase tracking-wider text-muted-foreground">
+                <h3 className="text-sm font-semibold mb-2 uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+                  <Award className="h-4 w-4" />
                   Education
                 </h3>
-                <p className="text-sm text-muted-foreground">
-                  M.Sc. in Artificial Intelligence
-                </p>
+                <div className="space-y-3 text-sm text-muted-foreground">
+                  <div>
+                    <p className="font-medium text-foreground">Master of Computer and Information Sciences</p>
+                    <p>AUT — 2026 (First Class Honours)</p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground">Bachelor of Software Engineering</p>
+                    <p>Hebei University of Science and Technology — 2013 (National Scholarship)</p>
+                  </div>
+                </div>
               </div>
               <div>
-                <h3 className="text-sm font-semibold mb-2 uppercase tracking-wider text-muted-foreground">
+                <h3 className="text-sm font-semibold mb-2 uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+                  <FileText className="h-4 w-4" />
                   Certifications
                 </h3>
-                <p className="text-sm text-muted-foreground">
-                  Google Associate Android Developer
-                </p>
+                <div className="space-y-3 text-sm text-muted-foreground">
+                  <div>
+                    <p className="font-medium text-foreground">Software Design Engineer Certificate</p>
+                    <p>2019</p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground">IoT Fundamentals</p>
+                    <p>2020</p>
+                  </div>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -183,7 +243,7 @@ export default function ResumePage() {
             Need a customized resume?
           </h2>
           <p className="text-muted-foreground">
-            Get in touch to discuss your specific requirements.
+            Reach out and I&apos;ll tailor a resume to match your opportunity.
           </p>
           <Button render={<Link href="/contact" />}>Get in Touch</Button>
         </div>

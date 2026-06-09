@@ -1,100 +1,101 @@
 import Link from "next/link"
 import {
   Smartphone,
-  CheckCircle2,
-  ExternalLink,
-  ArrowRight,
   Code2,
-  Library,
-  Wrench,
+  Layout,
+  Layers,
+  Cable,
+  Database,
+  Network,
+  Activity,
+  Shield,
+  Bug,
+  TestTube,
+  ArrowRight,
+  Building2,
 } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { siteConfig } from "@/lib/data"
 
-const skillCategories = [
+const skills = [
+  { category: "Languages", icon: Code2, items: ["Kotlin", "Java"] },
+  { category: "UI", icon: Layout, items: ["Jetpack Compose", "Material Design 3", "XML Layouts"] },
+  { category: "Architecture", icon: Layers, items: ["MVVM", "Clean Architecture", "MVI", "SOLID"] },
+  { category: "DI", icon: Cable, items: ["Hilt", "Dagger"] },
+  { category: "Data", icon: Database, items: ["Room", "SQLite", "DataStore"] },
+  { category: "Networking", icon: Network, items: ["Retrofit", "OkHttp", "WebSocket"] },
+  { category: "Async", icon: Activity, items: ["Coroutines", "Flow", "RxJava"] },
+  { category: "System", icon: Shield, items: ["NDK/JNI (TCP/UDP)", "Android Security", "Reverse Engineering (JADX, Xposed)"] },
+  { category: "Testing", icon: TestTube, items: ["JUnit", "MockK", "Espresso", "Compose Testing"] },
+]
+
+const projects = [
   {
-    category: "Languages",
-    icon: Code2,
-    items: ["Kotlin", "Java"],
+    title: "Enterprise Messaging Platform",
+    description:
+      "Enterprise IM serving 5,000 DAU with sub-200ms latency. NDK TCP/UDP transport for real-time messaging. 10-year lifecycle product built with Kotlin/Java, MVVM, Coroutines.",
+    tags: ["NDK", "TCP/UDP", "Real-time", "Kotlin", "Coroutines"],
   },
   {
-    category: "UI",
+    title: "Smart Factory Shop-Floor App",
+    description:
+      "Android terminals for garment factory workers. RFID integration, barcode scanning, and production task management. Deployed across 10+ factory sites.",
+    tags: ["RFID", "IoT", "Jetpack Compose", "MVVM"],
+  },
+  {
+    title: "Forest Patrol Inspection",
+    description:
+      "Offline-first Android GIS app for forest rangers. GPS tracking, offline maps, fire/pest reporting with deferred sync.",
+    tags: ["Offline-First", "GIS", "GPS", "SQLite"],
+  },
+  {
+    title: "Live Streaming Commerce",
+    description:
+      "Android live-streaming client with custom C++ streaming core. Multi-bitrate support (360p-1080p), WebRTC, RTMP.",
+    tags: ["NDK", "Streaming", "WebRTC", "RTMP"],
+  },
+  {
+    title: "Picture Book Locker",
+    description:
+      "Smart library locker control Android app. Face recognition, QR scanning, electromagnetic lock control.",
+    tags: ["IoT", "Face Recognition", "Embedded"],
+  },
+  {
+    title: "Boobit Crypto Trading",
+    description:
+      "Cryptocurrency trading app with real-time market data via WebSocket. MVVM Clean Architecture with Jetpack Compose.",
+    tags: ["Fintech", "WebSocket", "Compose", "MVVM"],
+  },
+]
+
+const achievements = [
+  {
     icon: Smartphone,
-    items: ["Jetpack Compose", "XML Layouts", "Material Design 3"],
+    title: "8+ Production Apps",
+    description: "Shipped eight production Android applications across diverse domains — enterprise IM, IoT, fintech, live streaming, and more.",
   },
   {
-    category: "Architecture",
-    icon: Library,
-    items: ["MVVM", "Clean Architecture", "MVI"],
+    icon: Layers,
+    title: "50%+ Code Duplication Reduction",
+    description: "Architecture reused across 12+ internal projects, dramatically reducing boilerplate and maintenance overhead.",
   },
   {
-    category: "DI",
-    icon: Wrench,
-    items: ["Hilt", "Dagger"],
+    icon: Bug,
+    title: "OOM Crash Reduction",
+    description: "Memory profiling and optimization that significantly reduced out-of-memory crashes in resource-constrained environments.",
   },
   {
-    category: "Data",
-    icon: Library,
-    items: ["Room", "DataStore", "SQLite"],
+    icon: Activity,
+    title: "Sub-200ms Real-Time Messaging",
+    description: "NDK-level TCP/UDP transport layer enabling sub-200ms latency for real-time enterprise messaging at scale.",
   },
   {
-    category: "Networking",
-    icon: Library,
-    items: ["Retrofit", "OkHttp", "Ktor"],
-  },
-  {
-    category: "Async",
-    icon: Library,
-    items: ["Coroutines", "Flow", "RxJava"],
-  },
-  {
-    category: "Testing",
-    icon: CheckCircle2,
-    items: ["JUnit", "Mockito", "Espresso", "Compose Testing"],
-  },
-]
-
-const androidProjects = [
-  {
-    title: "Enterprise Mobile Suite",
-    description:
-      "Comprehensive enterprise Android application with offline-first architecture, MVVM, Hilt, Room, and Retrofit integration.",
-    tags: ["Kotlin", "MVVM", "Clean Architecture"],
-  },
-  {
-    title: "Industrial IoT Dashboard",
-    description:
-      "Real-time factory monitoring Android app with MQTT integration and data visualization for industrial environments.",
-    tags: ["IoT", "Compose", "MQTT"],
-  },
-  {
-    title: "Field Service App",
-    description:
-      "Offline-capable field service application for industrial technicians with barcode scanning and asset management.",
-    tags: ["Offline-First", "Room", "CameraX"],
-  },
-]
-
-const androidArticles = [
-  {
-    title: "MVVM Best Practices in Android",
-    description: "Deep dive into MVVM pattern with practical examples",
-  },
-  {
-    title: "Offline-First Architecture with Room",
-    description: "Building robust offline-capable Android apps",
-  },
-  {
-    title: "Dependency Injection with Hilt",
-    description: "A comprehensive guide to Hilt in modern Android apps",
-  },
-  {
-    title: "Jetpack Compose — From Views to Declarative UI",
-    description: "Migration guide and best practices",
+    icon: Layout,
+    title: "MVVM + Compose Adoption",
+    description: "Drove adoption of MVVM architecture and Jetpack Compose across the organization's Android projects.",
   },
 ]
 
@@ -108,8 +109,9 @@ export default function AndroidPage() {
           <h1 className="text-4xl font-bold tracking-tight">Android Development</h1>
         </div>
         <p className="text-lg text-muted-foreground max-w-2xl">
-          {siteConfig.tagline} — over a decade of Android expertise, from Java to Kotlin,
-          XML to Jetpack Compose, building enterprise-grade applications with modern architecture patterns.
+          Senior Android Engineer with 10+ years of experience at Chunxiao Technology (2013–2024).
+          From Java to Kotlin, XML to Jetpack Compose — building enterprise-grade Android applications
+          with modern architecture patterns and native performance.
         </p>
       </div>
 
@@ -118,8 +120,8 @@ export default function AndroidPage() {
       {/* Skills Section */}
       <section className="mb-16">
         <h2 className="text-3xl font-bold tracking-tight mb-8">Android Skills</h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {skillCategories.map(({ category, icon: Icon, items }) => (
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {skills.map(({ category, icon: Icon, items }) => (
             <Card key={category}>
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
@@ -143,30 +145,20 @@ export default function AndroidPage() {
 
       <Separator className="mb-12" />
 
-      {/* Projects Section */}
+      {/* Key Achievements */}
       <section className="mb-16">
-        <h2 className="text-3xl font-bold tracking-tight mb-8">Android Projects</h2>
+        <h2 className="text-3xl font-bold tracking-tight mb-8">Key Achievements</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {androidProjects.map((project) => (
-            <Card key={project.title} className="flex flex-col">
+          {achievements.map(({ icon: Icon, title, description }) => (
+            <Card key={title}>
               <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Icon className="h-4 w-4 text-primary" />
+                  {title}
+                </CardTitle>
               </CardHeader>
-              <CardContent className="flex-1">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <Badge key={tag} variant="outline">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
               <CardContent>
-                <Button variant="link" size="xs" className="px-0" render={<a href="#" />}>
-                  Architecture Details
-                  <ExternalLink className="ml-1 h-3 w-3" />
-                </Button>
+                <p className="text-sm text-muted-foreground">{description}</p>
               </CardContent>
             </Card>
           ))}
@@ -175,30 +167,56 @@ export default function AndroidPage() {
 
       <Separator className="mb-12" />
 
-      {/* Articles Section */}
+      {/* Projects Section */}
       <section className="mb-16">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl font-bold tracking-tight">Android Articles</h2>
-          <Button variant="ghost" render={<Link href="/blog" />}>
-            View All <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </div>
+        <h2 className="text-3xl font-bold tracking-tight mb-8">Android Projects</h2>
         <div className="grid gap-6 md:grid-cols-2">
-          {androidArticles.map((article) => (
-            <Card key={article.title}>
+          {projects.map((project) => (
+            <Card key={project.title} className="flex flex-col">
               <CardHeader>
-                <CardTitle>{article.title}</CardTitle>
-                <CardDescription>{article.description}</CardDescription>
+                <CardTitle>{project.title}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <Button variant="link" size="xs" className="px-0" render={<a href="#" />}>
-                  Read Article
-                  <ArrowRight className="ml-1 h-3 w-3" />
-                </Button>
+              <CardContent className="flex-1">
+                <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <Badge key={tag} variant="outline">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
+      </section>
+
+      <Separator className="mb-12" />
+
+      {/* Experience CTA */}
+      <section className="mb-16">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-3xl font-bold tracking-tight">Experience</h2>
+          <Button variant="ghost" render={<Link href="/resume" />}>
+            View Full Resume <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg flex items-center gap-2">
+              <Building2 className="h-5 w-5 text-primary" />
+              Chunxiao Technology — Senior Android Engineer
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-2">2013 – 2024 · 11 years</p>
+            <p className="text-sm text-muted-foreground">
+              Led Android development for enterprise messaging, IoT, fintech, and live streaming products.
+              Championed MVVM architecture and Jetpack Compose adoption. Built NDK-level TCP/UDP transport
+              for sub-200ms real-time communication.
+            </p>
+          </CardContent>
+        </Card>
       </section>
     </main>
   )

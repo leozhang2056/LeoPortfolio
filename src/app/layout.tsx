@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { ChatBot } from "@/components/chat/chat-bot";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
@@ -19,37 +20,40 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Leo - Software Engineer | Android, AI, Full Stack",
-    template: "%s | Leo",
+    default: "Leo Zhang | Senior Software Engineer — Android, AI, Full Stack",
+    template: "%s | Leo Zhang",
   },
   description:
-    "Software Engineer with 10+ years experience in Android, AI, Industrial IoT, and Enterprise Software. Portfolio showcasing projects, research, and technical expertise.",
+    "Full-stack software engineer with 10+ years shipping production software across Android, Java backends, and AI integration. Master of Computer and Information Sciences, AUT — First Class Honours. Industrial IoT, enterprise messaging, applied computer vision.",
   keywords: [
+    "Leo Zhang",
+    "Yuchao Zhang",
     "Android Developer",
     "AI Engineer",
     "Full Stack Developer",
     "Software Engineer",
     "Kotlin",
     "Jetpack Compose",
-    "Spring Boot",
-    "Next.js",
-    "React",
+    "Spring Cloud",
+    "Auckland",
+    "New Zealand",
     "Industrial IoT",
-    "Portfolio",
+    "Computer Vision",
+    "ChatClothes",
   ],
-  authors: [{ name: "Leo" }],
+  authors: [{ name: "Leo Zhang", url: "https://github.com/leozhang2056" }],
   openGraph: {
-    title: "Leo - Software Engineer | Portfolio",
+    title: "Leo Zhang — Senior Software Engineer | Portfolio",
     description:
-      "Software Engineer with expertise in Android, AI, Industrial IoT, and Enterprise Software.",
+      "10+ years shipping production software across Android, Java backends, and AI. Master of Computer and Information Sciences, AUT — First Class Honours.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Leo - Software Engineer | Portfolio",
+    title: "Leo Zhang — Senior Software Engineer | Portfolio",
     description:
-      "Software Engineer with expertise in Android, AI, Industrial IoT, and Enterprise Software.",
+      "10+ years shipping production software across Android, Java backends, and AI. Master of Computer and Information Sciences, AUT — First Class Honours.",
   },
   robots: {
     index: true,
@@ -79,6 +83,7 @@ export default function RootLayout({
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
+            <ChatBot />
             <Toaster />
           </TooltipProvider>
         </ThemeProvider>
