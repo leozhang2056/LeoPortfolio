@@ -44,25 +44,23 @@ Open [http://localhost:3000](http://localhost:3000).
 ```
 src/
 ├── app/
-│   ├── layout.tsx            # Root layout — Header + Footer + ThemeProvider + ChatBot
-│   ├── page.tsx              # Home — Hero, Skills, Featured Projects, Resume CTA
-│   ├── android/page.tsx      # Android showcase — skills, projects, achievements
-│   ├── ai/page.tsx           # AI showcase — ChatClothes, research tabs, tech stack
-│   ├── projects/page.tsx     # 8 detailed project cards (problem→solution→results→lessons)
-│   ├── research/page.tsx     # Master thesis, publications, posters, awards
-│   ├── blog/page.tsx         # Blog list with search + category filter
-│   ├── resume/page.tsx       # Three resume variants + full professional summary
-│   ├── contact/page.tsx      # Contact form, social links, availability
-│   └── api/chat/route.ts     # POST /api/chat — OpenAI streaming chat endpoint
+│   ├── layout.tsx              # Root layout — Header + Footer + ThemeProvider + ChatBot
+│   ├── page.tsx                # Home — Hero, About, Skills, Featured Projects
+│   ├── chat/page.tsx           # Full-page AI chat assistant
+│   ├── projects/page.tsx       # 8 detailed project cards (problem→solution→results→lessons)
+│   ├── research/page.tsx       # Technical reflections & insights
+│   ├── sitemap.ts              # SEO sitemap
+│   ├── robots.ts               # SEO robots.txt
+│   └── api/chat/route.ts       # POST /api/chat — OpenAI streaming chat endpoint
 ├── components/
-│   ├── ui/                   # shadcn/ui components (17 components)
-│   ├── layout/               # Header (nav + dark mode + mobile menu), Footer
-│   ├── home/                 # HeroSection, SkillsSection, FeaturedProjects, CTASection
-│   └── chat/                 # ChatBot — floating button + dialog
+│   ├── ui/                     # shadcn/ui components
+│   ├── layout/                 # Header (nav + dark mode + mobile menu), Footer
+│   ├── home/                   # HeroSection, AboutSection, SkillsSection, FeaturedProjects
+│   └── chat/                   # ChatBot — floating button widget
 └── lib/
-    ├── data.ts               # Site config, skills, projects, resume variants
-    ├── utils.ts              # cn() utility (clsx + tailwind-merge)
-    └── chat-prompt.ts        # System prompt with full career data for AI assistant
+    ├── data.ts                 # Site config, skills, projects, nav items
+    ├── utils.ts                # cn() utility (clsx + tailwind-merge)
+    └── chat-prompt.ts          # System prompt with full career data for AI assistant
 ```
 
 ---
@@ -71,22 +69,24 @@ src/
 
 | Route | Type | Description |
 |-------|------|-------------|
-| `/` | Static | Home |
-| `/android` | Static | Android skills & projects |
-| `/ai` | Static | AI research & tools |
-| `/projects` | Static | 8 detailed projects |
-| `/research` | Static | Publications & awards |
-| `/blog` | Static | Blog with search |
-| `/resume` | Static | Resume downloads |
-| `/contact` | Static | Contact form |
+| `/` | Static | Home — Hero, About, Skills, Featured Projects |
+| `/projects` | Static | 8 detailed project cards |
+| `/research` | Static | Technical reflections & insights |
+| `/chat` | Static | Full-page AI chat assistant |
 | `/api/chat` | Dynamic | OpenAI streaming API |
+| `/sitemap.xml` | Static | SEO sitemap |
+| `/robots.txt` | Static | SEO robots.txt |
 
 ---
 
 ## Features
 
-### AI Chat Assistant (右下角浮动按钮)
-Visitors can ask questions about Leo's background, skills, and projects through a conversational AI interface. The system prompt is pre-loaded with full career data, including:
+### AI Chat Assistant
+Two ways to interact:
+1. **Floating button** (bottom-right) — quick questions without leaving the page
+2. **Full-page chat** (`/chat`) — dedicated conversation interface
+
+The system prompt is pre-loaded with full career data, including:
 - Work history (AUT + Chunxiao Technology, 2013–2026)
 - Technical skills inventory (50+ skills with proficiency levels)
 - 8 featured projects with quantified results

@@ -240,7 +240,7 @@ export default function ProjectsPage() {
 
       <div className="grid gap-8 md:grid-cols-2">
         {projects.map((project) => (
-          <Card key={project.title}>
+          <Card key={project.title} id={project.title.toLowerCase().replace(/\s+/g, "-")}>
             <CardHeader>
               <div className="flex items-center gap-2.5">
                 <project.icon className="h-5 w-5 text-primary shrink-0" />

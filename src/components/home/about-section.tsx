@@ -3,7 +3,7 @@ import { CheckCircle2 } from "lucide-react";
 export function AboutSection() {
   const highlights = [
     "10+ years shipping production software across Android, backend, and AI",
-    "Master&apos;s in Computer &amp; Information Sciences from AUT \u2014 First Class Honours",
+    "Master&apos;s in Computer & Information Sciences from AUT \u2014 First Class Honours",
     "Led 6-person team delivering Industrial IoT to 10+ factory sites",
     "Published research at IVCNZ 2025 (ChatClothes virtual try-on system)",
     "5,000 DAU enterprise messaging platform with sub-200ms latency",
