@@ -42,6 +42,9 @@ export const metadata: Metadata = {
     "ChatClothes",
   ],
   authors: [{ name: "Leo Zhang", url: "https://github.com/leozhang2056" }],
+  icons: {
+    icon: "/favicon.svg",
+  },
   openGraph: {
     title: "Leo Zhang — Senior Software Engineer | Portfolio",
     description:

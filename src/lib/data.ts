@@ -161,7 +161,6 @@ export const navItems = [
   { href: "/ai", label: "AI" },
   { href: "/projects", label: "Projects" },
   { href: "/research", label: "Research" },
-  { href: "/blog", label: "Blog" },
   { href: "/resume", label: "Resume" },
   { href: "/contact", label: "Contact" },
 ];

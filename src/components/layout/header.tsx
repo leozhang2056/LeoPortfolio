@@ -19,7 +19,6 @@ const navItems = [
   { href: "/ai", label: "AI" },
   { href: "/projects", label: "Projects" },
   { href: "/research", label: "Research" },
-  { href: "/blog", label: "Blog" },
   { href: "/resume", label: "Resume" },
   { href: "/contact", label: "Contact" },
 ];
@@ -38,7 +37,8 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold tracking-tight">Leo</span>
+          <span className="text-xl font-bold tracking-tight">Leo Zhang</span>
+          <span className="hidden sm:inline text-sm text-muted-foreground font-normal">/ Software Engineer</span>
         </Link>
 
         {/* Desktop Navigation */}
