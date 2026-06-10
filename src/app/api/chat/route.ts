@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   });
 
   const result = streamText({
-    model: newapi("deepseek-r1"),
+    model: newapi("free-chat"),
     system: LEO_SYSTEM_PROMPT,
     messages,
   });
