@@ -2,11 +2,11 @@ import { CheckCircle2 } from "lucide-react";
 
 export function AboutSection() {
   const highlights = [
-    "10+ years shipping production software across Android, backend, and AI",
-    "Master&apos;s in Computer & Information Sciences from AUT \u2014 First Class Honours",
-    "Led 6-person team delivering Industrial IoT to 10+ factory sites",
-    "Published research at IVCNZ 2025 (ChatClothes virtual try-on system)",
-    "5,000 DAU enterprise messaging platform with sub-200ms latency",
+    { text: "10+ years shipping production software across Android, backend, and AI", color: "text-blue-500" },
+    { text: "Master's in Computer & Information Sciences from AUT — First Class Honours", color: "text-purple-500" },
+    { text: "Led 6-person team delivering Industrial IoT to 10+ factory sites", color: "text-green-500" },
+    { text: "Published research at IVCNZ 2025 (ChatClothes virtual try-on system)", color: "text-pink-500" },
+    { text: "5,000 DAU enterprise messaging platform with sub-200ms latency", color: "text-orange-500" },
   ];
 
   return (
@@ -23,7 +23,7 @@ export function AboutSection() {
           <p className="mt-4 text-muted-foreground leading-relaxed">
             I completed my Master&apos;s in Computer and Information Sciences at
             Auckland University of Technology with First Class Honours, where
-            I built ChatClothes \u2014 a multimodal AI virtual try-on system
+            I built ChatClothes — a multimodal AI virtual try-on system
             combining diffusion models, YOLO classification, and local LLM
             control, deployed on Raspberry Pi 5.
           </p>
@@ -31,9 +31,9 @@ export function AboutSection() {
 
         <div className="space-y-4">
           {highlights.map((h, i) => (
-            <div key={i} className="flex items-start gap-3 p-4 rounded-lg border bg-muted/30">
-              <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-muted-foreground">{h}</p>
+            <div key={i} className="flex items-start gap-3 p-4 rounded-xl border bg-card hover:shadow-md transition-shadow">
+              <CheckCircle2 className={`h-5 w-5 ${h.color} flex-shrink-0 mt-0.5`} />
+              <p className="text-sm text-muted-foreground">{h.text}</p>
             </div>
           ))}
         </div>
