@@ -15,12 +15,9 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/android", label: "Android" },
-  { href: "/ai", label: "AI" },
   { href: "/projects", label: "Projects" },
   { href: "/research", label: "Research" },
-  { href: "/resume", label: "Resume" },
-  { href: "/contact", label: "Contact" },
+  { href: "/chat", label: "Chat" },
 ];
 
 export function Header() {
