@@ -1,0 +1,35 @@
+services:
+  leoportfolio:
+    build: .
+    image: leozhang2056/leoportfolio:latest
+    container_name: leoportfolio
+    ports:
+      - "3030:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - leoportfolio_logs:/var/log/nginx
+    networks:
+      - app-network
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_POLL_INTERVAL=300
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_INCLUDE_STOPPED=true
+    command: --interval 300
+    networks:
+      - app-network
+
+volumes:
+  leoportfolio_logs:
+
+networks:
+  app-network:
+    driver: bridge
