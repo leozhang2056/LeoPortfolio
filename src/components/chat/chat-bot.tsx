@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useChat, Chat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
-import { MessageCircle, X, Send, Bot, User } from "lucide-react";
+import { MessageCircle, X, Send, Bot, User, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -28,8 +28,9 @@ export function ChatBot() {
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const { messages, sendMessage, status } = useChat({ chat });
+  const { messages, sendMessage, status, error } = useChat({ chat });
 
   const isLoading = status === "submitted" || status === "streaming";
 
@@ -38,11 +39,19 @@ export function ChatBot() {
   }, [messages]);
 
   useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+    if (open) {
+      setTimeout(() => inputRef.current?.focus(), 100);
+    }
+  }, [open]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && open) {
+        setOpen(false);
+      }
     };
-    if (open) document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [open]);
 
   const onSubmit = (e: React.FormEvent) => {
@@ -56,8 +65,9 @@ export function ChatBot() {
     return (
       <Button
         onClick={() => setOpen(true)}
-        className="fixed bottom-4 right-4 z-50 h-14 w-14 rounded-full shadow-lg"
+        className="fixed bottom-4 right-4 z-50 h-14 w-14 rounded-full shadow-lg hover:scale-105 transition-transform"
         size="icon"
+        aria-label="Open chat"
       >
         <MessageCircle className="h-6 w-6" />
       </Button>
@@ -65,14 +75,14 @@ export function ChatBot() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 w-[380px] max-w-[calc(100vw-2rem)] h-[560px] max-h-[calc(100vh-2rem)] rounded-xl border bg-background shadow-2xl flex flex-col">
+    <div className="fixed bottom-4 right-4 z-50 w-[380px] max-w-[calc(100vw-2rem)] h-[min(560px,calc(100dvh-2rem))] rounded-xl border bg-background shadow-2xl flex flex-col animate-in fade-in slide-in-from-bottom-4 duration-200">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b shrink-0">
         <div className="flex items-center gap-2">
           <div className="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse" />
           <span className="text-sm font-semibold">Leo&apos;s Assistant</span>
         </div>
-        <Button variant="ghost" size="icon-sm" onClick={() => setOpen(false)}>
+        <Button variant="ghost" size="icon-sm" onClick={() => setOpen(false)} aria-label="Close chat">
           <X className="h-4 w-4" />
         </Button>
       </div>
@@ -83,7 +93,7 @@ export function ChatBot() {
           <div
             key={m.id}
             className={cn(
-              "flex gap-2.5",
+              "flex gap-2.5 animate-in fade-in slide-in-from-bottom-1 duration-200",
               (m.role as string) === "user" ? "justify-end" : "justify-start"
             )}
           >
@@ -115,7 +125,7 @@ export function ChatBot() {
           </div>
         ))}
         {isLoading && (
-          <div className="flex gap-2.5">
+          <div className="flex gap-2.5 animate-in fade-in duration-200">
             <div className="flex-shrink-0 h-7 w-7 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
               <Bot className="h-3.5 w-3.5 text-primary" />
             </div>
@@ -128,6 +138,24 @@ export function ChatBot() {
             </div>
           </div>
         )}
+        {error && (
+          <div className="flex gap-2.5 animate-in fade-in duration-200">
+            <div className="flex-shrink-0 h-7 w-7 rounded-full bg-destructive/10 flex items-center justify-center mt-0.5">
+              <AlertCircle className="h-3.5 w-3.5 text-destructive" />
+            </div>
+            <div className="bg-destructive/10 border border-destructive/20 rounded-lg px-3 py-2">
+              <p className="text-xs text-destructive mb-1">Failed to respond</p>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => window.location.reload()}
+                className="h-6 text-[10px] px-2"
+              >
+                Retry
+              </Button>
+            </div>
+          </div>
+        )}
         <div ref={messagesEndRef} />
       </div>
 
@@ -135,6 +163,7 @@ export function ChatBot() {
       <form onSubmit={onSubmit} className="border-t px-3 py-3 shrink-0">
         <div className="flex gap-2">
           <Input
+            ref={inputRef}
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             placeholder="Ask about Leo..."
