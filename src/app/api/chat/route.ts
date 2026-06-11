@@ -1,4 +1,4 @@
-import { streamText } from "ai";
+import { streamText, convertToModelMessages } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 import { LEO_SYSTEM_PROMPT } from "@/lib/chat-prompt";
 
@@ -15,7 +15,7 @@ export async function POST(req: Request) {
   const result = streamText({
     model: newapi("free-chat"),
     system: LEO_SYSTEM_PROMPT,
-    messages,
+    messages: await convertToModelMessages(messages),
   });
 
   return result.toUIMessageStreamResponse();
