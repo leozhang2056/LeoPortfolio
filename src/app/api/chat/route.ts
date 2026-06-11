@@ -56,7 +56,7 @@ export async function POST(req: Request) {
   const cleanMessages = toOpenAIMessages(messages);
 
   const result = streamText({
-    model: newapi("free-chat"),
+    model: newapi.chat("free-chat"),
     system: LEO_SYSTEM_PROMPT,
     messages: cleanMessages,
   });

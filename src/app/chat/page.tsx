@@ -1,61 +1,82 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { useChat, Chat } from "@ai-sdk/react";
+import { useState, useRef, useEffect, useMemo } from "react";
+import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
-import { Send, MessageCircle, Sparkles, Bot, User, AlertCircle, Clock, Trash2 } from "lucide-react";
+import { Send, MessageCircle, Sparkles, User, AlertCircle, Clock, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-const chat = new Chat({
-  transport: new DefaultChatTransport({ api: "/api/chat" }),
-  messages: [
-    {
-      id: "welcome",
-      role: "assistant",
-      parts: [
-        {
-          type: "text",
-          text: "Hi! I'm Leo's AI assistant. Ask me anything about his background, skills, projects, or experience — I'm here to help! 👋",
-        },
-      ],
-    },
-  ],
-});
+const WELCOME_TEXT =
+  "Hi! I\u2019m Leo\u2019s AI assistant. Ask me anything about his background, skills, projects, or experience \u2014 I\u2019m here to help! \ud83d\udc4b";
+
+function LeoAvatar({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
+  const dim =
+    size === "lg" ? "h-10 w-10" : size === "md" ? "h-8 w-8" : "h-7 w-7";
+  return (
+    <div className={`flex-shrink-0 ${dim} rounded-full overflow-hidden shadow-sm ring-2 ring-primary/20`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/profile.jpg"
+        alt="Leo"
+        className="h-full w-full object-cover"
+      />
+    </div>
+  );
+}
 
 export default function ChatPage() {
   const [draft, setDraft] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { messages, sendMessage, status, error } = useChat({ chat });
 
-  // Load session history on mount
-  const [sessionHistory, setSessionHistory] = useState<string[]>(() => {
-    try {
-      const saved = localStorage.getItem('leoChatHistory');
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
+  const transport = useMemo(
+    () => new DefaultChatTransport({ api: "/api/chat" }),
+    []
+  );
 
-  // Update session history when messages change
+  const { messages, sendMessage, status, error } = useChat({ transport });
+
+  // Load session history from localStorage after mount
+  const [sessionHistory, setSessionHistory] = useState<string[]>([]);
+
   useEffect(() => {
-    if (messages.length > 0) {
-      const lastMessage = messages[messages.length - 1];
-      if ((lastMessage.role as string) === 'user' && lastMessage.parts[0]?.type === 'text') {
-        const newHistory = [...sessionHistory, lastMessage.parts[0].text].slice(-5);
-        setSessionHistory(newHistory);
-        localStorage.setItem('leoChatHistory', JSON.stringify(newHistory));
+    try {
+      const saved = localStorage.getItem("leoChatHistory");
+      if (saved) setSessionHistory(JSON.parse(saved));
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  // Update session history when new user messages arrive
+  const lastUserText = useMemo(() => {
+    for (let i = messages.length - 1; i >= 0; i--) {
+      const m = messages[i];
+      if ((m.role as string) === "user") {
+        const textPart = m.parts.find((p) => p.type === "text");
+        return textPart?.text ?? null;
       }
     }
-  }, [messages, sessionHistory]);
+    return null;
+  }, [messages]);
+
+  useEffect(() => {
+    if (lastUserText) {
+      setSessionHistory((prev) => {
+        const next = [...prev, lastUserText].slice(-5);
+        localStorage.setItem("leoChatHistory", JSON.stringify(next));
+        return next;
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastUserText]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages.length]);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -204,6 +225,14 @@ export default function ChatPage() {
         </CardHeader>
         <CardContent className="flex-1 flex flex-col overflow-hidden p-0 md:p-6 md:pt-0">
           <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+            {messages.length === 0 && (
+              <div className="flex gap-2.5 animate-in fade-in duration-200">
+                <LeoAvatar />
+                <div className="rounded-lg px-4 py-3 text-sm leading-relaxed max-w-[85%] shadow-sm bg-muted border border-border/50">
+                  <span>{WELCOME_TEXT}</span>
+                </div>
+              </div>
+            )}
             {messages.map((m) => (
               <div
                 key={m.id}
@@ -213,9 +242,7 @@ export default function ChatPage() {
                 )}
               >
                 {(m.role as string) !== "user" && (
-                  <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center shadow-sm">
-                    <Bot className="h-4 w-4 text-white" />
-                  </div>
+                  <LeoAvatar />
                 )}
                 <div
                   className={cn(
@@ -241,9 +268,7 @@ export default function ChatPage() {
             ))}
             {isLoading && (
               <div className="flex gap-2.5 animate-in fade-in duration-200">
-                <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center shadow-sm">
-                  <Bot className="h-4 w-4 text-white" />
-                </div>
+                <LeoAvatar />
                 <div className="bg-muted rounded-lg px-4 py-3 border border-border/50">
                   <div className="flex gap-1 mb-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary/40 animate-bounce [animation-delay:0ms]" />

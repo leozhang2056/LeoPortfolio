@@ -1,28 +1,29 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { useChat, Chat } from "@ai-sdk/react";
+import { useState, useRef, useEffect, useMemo } from "react";
+import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
-import { MessageCircle, X, Send, Bot, User, AlertCircle } from "lucide-react";
+import { X, Send, User, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-const chat = new Chat({
-  transport: new DefaultChatTransport({ api: "/api/chat" }),
-  messages: [
-    {
-      id: "welcome",
-      role: "assistant",
-      parts: [
-        {
-          type: "text",
-          text: "Hi! I'm Leo's portfolio assistant. Ask me anything about his skills, projects, or experience — I'm here to help! 👋",
-        },
-      ],
-    },
-  ],
-});
+const WELCOME_TEXT =
+  "Hi! I\u2019m Leo\u2019s portfolio assistant. Ask me anything about his skills, projects, or experience \u2014 I\u2019m here to help! \ud83d\udc4b";
+
+function LeoAvatar({ size = "sm" }: { size?: "sm" | "md" }) {
+  const dim = size === "md" ? "h-8 w-8" : "h-7 w-7";
+  return (
+    <div className={`flex-shrink-0 ${dim} rounded-full overflow-hidden mt-0.5 shadow-sm ring-2 ring-primary/20`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/profile.jpg"
+        alt="Leo"
+        className="h-full w-full object-cover"
+      />
+    </div>
+  );
+}
 
 export function ChatBot() {
   const [open, setOpen] = useState(false);
@@ -30,7 +31,12 @@ export function ChatBot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { messages, sendMessage, status, error } = useChat({ chat });
+  const transport = useMemo(
+    () => new DefaultChatTransport({ api: "/api/chat" }),
+    []
+  );
+
+  const { messages, sendMessage, status, error } = useChat({ transport });
 
   const isLoading = status === "submitted" || status === "streaming";
 
@@ -63,14 +69,18 @@ export function ChatBot() {
 
   if (!open) {
     return (
-      <Button
+      <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-4 right-4 z-50 h-14 w-14 rounded-full shadow-lg hover:scale-105 transition-transform"
-        size="icon"
+        className="fixed bottom-4 right-4 z-50 h-14 w-14 rounded-full shadow-lg hover:scale-105 transition-transform overflow-hidden border-2 border-primary/30 cursor-pointer"
         aria-label="Open chat"
       >
-        <MessageCircle className="h-6 w-6" />
-      </Button>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/profile.jpg"
+          alt="Chat with Leo"
+          className="h-full w-full object-cover"
+        />
+      </button>
     );
   }
 
@@ -79,7 +89,7 @@ export function ChatBot() {
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b shrink-0">
         <div className="flex items-center gap-2">
-          <div className="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse" />
+          <LeoAvatar size="sm" />
           <span className="text-sm font-semibold">Leo&apos;s Assistant</span>
         </div>
         <Button variant="ghost" size="icon-sm" onClick={() => setOpen(false)} aria-label="Close chat">
@@ -89,6 +99,14 @@ export function ChatBot() {
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-4 py-3 space-y-4">
+        {messages.length === 0 && (
+          <div className="flex gap-2.5 animate-in fade-in duration-200">
+            <LeoAvatar />
+            <div className="rounded-lg px-3 py-2 text-sm leading-relaxed max-w-[85%] bg-muted">
+              <span>{WELCOME_TEXT}</span>
+            </div>
+          </div>
+        )}
         {messages.map((m) => (
           <div
             key={m.id}
@@ -98,9 +116,7 @@ export function ChatBot() {
             )}
           >
             {(m.role as string) !== "user" && (
-              <div className="flex-shrink-0 h-7 w-7 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                <Bot className="h-3.5 w-3.5 text-primary" />
-              </div>
+              <LeoAvatar />
             )}
             <div
               className={cn(
@@ -126,9 +142,7 @@ export function ChatBot() {
         ))}
         {isLoading && (
           <div className="flex gap-2.5 animate-in fade-in duration-200">
-            <div className="flex-shrink-0 h-7 w-7 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-              <Bot className="h-3.5 w-3.5 text-primary" />
-            </div>
+            <LeoAvatar />
             <div className="bg-muted rounded-lg px-3 py-2">
               <div className="flex gap-1">
                 <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/40 animate-bounce [animation-delay:0ms]" />
