@@ -118,6 +118,99 @@ Mobile-first with responsive grid layouts, collapsible navigation, and touch-fri
 
 ---
 
+## CI/CD 自动部署架构
+
+树莓派作为自托管服务器，采用 **拉取式 CI/CD** 自动部署流程。
+
+### 架构图解
+
+```
+[本地开发机]                    [GitHub]                    [树莓派 Pi 5]
+     │                            │                            │
+     │  1. git push origin main    │                            │
+     │────────────────────────────▶│                            │
+     │                            │                            │
+     │                            │  2. 定时轮询 (每 2 分钟)      │
+     │                            │  ┌────────────────────────▶│
+     │                            │  │  systemd timer           │
+     │                            │  │  leoportfolio-check      │
+     │                            │  │                         │
+     │                            │  │  3. 检测到新 commit      │
+     │                            │  │  git fetch → diff HEAD   │
+     │                            │  │                         │
+     │                            │  │  4. 自动部署              │
+     │                            │  │  ├─ git pull             │
+     │                            │  │  ├─ npm install          │
+     │                            │  │  ├─ npm run build        │
+     │                            │  │  ├─ 复制静态资源 ★       │
+     │                            │  │  ├─ 停止旧服务            │
+     │                            │  │  └─ 启动新服务            │
+     │                            │  │                         │
+     │                            │  │  5. 验证健康 (curl 200)  │
+     │                            │  │                         │
+     │  6. 访问更新版页面 ◀────────│──│─────────────────────────│
+     │  http://192.168.1.128:3030 │  │                         │
+```
+
+### 关键组件
+
+| 组件 | 说明 | 位置 |
+|------|------|------|
+| `leoportfolio-deploy.sh` | 完整部署脚本 | `/home/pi5/` |
+| `leoportfolio-check.timer` | systemd 定时器 (每 2 分钟) | `/etc/systemd/system/` |
+| `leoportfolio-check.service` | systemd 服务 (执行部署) | `/etc/systemd/system/` |
+| Next.js Standalone | 生产运行模式 | `.next/standalone/` |
+
+### 部署流程
+
+```bash
+# 部署脚本核心逻辑
+git fetch origin main
+LOCAL=$(git rev-parse HEAD)
+REMOTE=$(git rev-parse origin/main)
+
+if [ "$LOCAL" != "$REMOTE" ]; then
+  git pull origin main
+  npm install --production
+  npm run build
+
+  # ★ 静态资源复制（Next.js standalone 必须）
+  cp -r .next/static .next/standalone/.next/
+  cp -r public/* .next/standalone/public/
+
+  # 停止旧进程 → 启动新服务
+  pkill -f "next-server"
+  HOSTNAME=0.0.0.0 PORT=3030 node .next/standalone/server.js
+fi
+```
+
+### 常见问题修复
+
+| 问题 | 原因 | 修复 |
+|------|------|------|
+| CSS/JS 404 | `npm run build` 重建后未复制静态资源 | `cp -r .next/static .next/standalone/.next/` |
+| 图片 404 | `public/` 未同步到 standalone | `cp -r public/* .next/standalone/public/` |
+| 局域网无法访问 | Next.js 默认绑定 127.0.0.1 | `HOSTNAME=0.0.0.0` |
+| 端口冲突 | 旧进程残留 | `pkill -f "node.*next"` |
+
+### 运维命令
+
+```bash
+# 查看部署日志
+journalctl -u leoportfolio-check.service -f
+
+# 手动触发部署
+sudo systemctl start leoportfolio-check.service
+
+# 检查定时器状态
+systemctl status leoportfolio-check.timer
+
+# 验证服务运行状态
+curl -s -o /dev/null -w "%{http_code}" http://localhost:3030/
+```
+
+---
+
 ## License
 
 MIT
