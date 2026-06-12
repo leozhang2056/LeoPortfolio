@@ -49,7 +49,7 @@ export async function POST(req: Request) {
   const { messages } = await req.json();
 
   const newapi = createOpenAI({
-    baseURL: "http://192.168.1.128:3001/v1",
+    baseURL: "https://newapi.leoz.fun/v1",
     apiKey: "sk-YQKYXv5uIQF8H3xJfvIvUHMC74ZBoNh68OkyCH3ze0plefGO",
   });
 
