@@ -50,7 +50,7 @@ export function FeaturedProjectsSection() {
             Selected work demonstrating breadth across mobile, backend, and AI
           </p>
         </div>
-        <Button variant="ghost" render={<Link href="/projects" />} className="hidden sm:flex">
+        <Button variant="ghost" render={<Link href="/projects" />} nativeButton={false} className="hidden sm:flex">
           View All <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </div>
@@ -94,7 +94,7 @@ export function FeaturedProjectsSection() {
         ))}
       </div>
       <div className="mt-6 text-center sm:hidden">
-        <Button variant="ghost" render={<Link href="/projects" />}>
+        <Button variant="ghost" render={<Link href="/projects" />} nativeButton={false}>
           View All Projects <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </div>

@@ -35,21 +35,22 @@ export function HeroSection() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button size="lg" render={<Link href="/projects" />}>
+              <Button size="lg" render={<Link href="/projects" />} nativeButton={false}>
                 View Projects <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg" render={<Link href="/chat" />}>
+              <Button variant="outline" size="lg" render={<Link href="/chat" />} nativeButton={false}>
                 Try AI Chat
               </Button>
             </div>
           </div>
 
           <div className="relative">
-            <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-purple-100 to-pink-100 border-2 border-primary/10 shadow-xl shadow-primary/10 flex items-center justify-center">
+            <div className="relative aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-purple-100 to-pink-100 border-2 border-primary/10 shadow-xl shadow-primary/10 flex items-center justify-center">
               <Image
                 src="/profile.jpg"
                 alt="Leo Zhang"
                 fill
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
                 priority
               />

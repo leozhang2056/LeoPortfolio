@@ -284,7 +284,7 @@ export const projects: ProjectData[] = [
     role: "Android Mobile Client Developer",
     summary:
       "Offline-first Android GIS app for forest rangers working in zero-signal areas. Offline map tiles, GPS trajectory recording, GIS layer annotation, and fire/pest/incident reporting with deferred sync when connectivity returns.",
-    coverImage: "/projects/forest-patrol/app-gps-map-offline.jpg",
+    coverImage: "/projects/forest-patrol/field-scene-07.jpg",
     images: [
       { src: "/projects/forest-patrol/app-gps-map-offline.jpg", caption: "Offline GPS Map" },
       { src: "/projects/forest-patrol/app-photo-capture.jpg", caption: "Photo Capture" },

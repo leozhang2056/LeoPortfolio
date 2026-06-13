@@ -97,7 +97,7 @@ function ProjectCard({ project }: { project: ProjectData }) {
       <div className="flex flex-col md:flex-row">
         {/* Left: Image */}
         <div className="md:w-[280px] lg:w-[320px] shrink-0 overflow-hidden">
-          <div className="relative w-full h-[200px] md:h-full md:min-h-[220px]">
+          <div className="relative w-full h-[200px] md:h-[220px]">
             <ProjectImage project={project} />
           </div>
         </div>
@@ -155,6 +155,11 @@ function ProjectCard({ project }: { project: ProjectData }) {
   );
 }
 
+function getEndYear(period: string): number {
+  const years = period.match(/\d{4}/g);
+  return years ? parseInt(years[years.length - 1]) : 0;
+}
+
 export default function ProjectsPage() {
   return (
     <div className="container mx-auto max-w-6xl px-4 py-16">
@@ -171,7 +176,14 @@ export default function ProjectsPage() {
       </div>
 
       <div className="space-y-6">
-        {projects.map((project) => (
+        {[...projects]
+          .sort((a, b) => {
+            const aHasImg = a.coverImage ? 1 : 0;
+            const bHasImg = b.coverImage ? 1 : 0;
+            if (aHasImg !== bHasImg) return bHasImg - aHasImg;
+            return getEndYear(b.period) - getEndYear(a.period);
+          })
+          .map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}
       </div>

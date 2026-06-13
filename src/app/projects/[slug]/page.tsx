@@ -89,6 +89,7 @@ export default async function ProjectDetailPage({
         variant="ghost"
         size="sm"
         render={<Link href="/projects" />}
+        nativeButton={false}
         className="mb-8 -ml-2"
       >
         <ArrowLeft className="mr-2 h-4 w-4" />

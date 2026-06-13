@@ -123,7 +123,7 @@ export default function ResearchPage() {
           I enjoy deep technical conversations. Use the chat below or connect on
           LinkedIn/GitHub.
         </p>
-        <Button size="lg" render={<Link href="/chat" />}>
+        <Button size="lg" render={<Link href="/chat" />} nativeButton={false}>
           Start Chat <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </div>

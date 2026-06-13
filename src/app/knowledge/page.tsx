@@ -126,7 +126,10 @@ export default function KnowledgePage() {
                 </div>
                 {project.metrics && (
                   <p className="text-xs text-muted-foreground">
-                    <strong>Metrics:</strong> {Object.entries(project.metrics).map(([k, v]) => `${k}: ${v}`).join(', ')}
+                    <strong>Metrics:</strong>{' '}
+                    {typeof project.metrics === 'string'
+                      ? project.metrics
+                      : Object.entries(project.metrics).map(([k, v]) => `${k}: ${v}`).join(', ')}
                   </p>
                 )}
               </div>
