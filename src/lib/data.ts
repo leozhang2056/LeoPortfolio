@@ -7,7 +7,7 @@ export const siteConfig = {
   phone: "+64 27 385 0794",
   github: "https://github.com/leozhang2056",
   linkedin: "https://www.linkedin.com/in/leo-zhang-305626280/",
-  facebook: "https://www.facebook.com/leozhang2056",
+  facebook: "https://www.facebook.com/share/1HGioRCAco/",
   location: "Auckland, New Zealand",
   visa: "Post-Study Work Visa — Open full-time work for any employer",
 };
