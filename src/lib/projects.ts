@@ -27,7 +27,7 @@ export const projects: ProjectData[] = [
     period: "Nov 2024 – Apr 2025",
     role: "AI Engineer & Python Developer (Independent)",
     summary:
-      "Master's thesis: multimodal AI virtual try-on combining OOTDiffusion+LoRA generation, YOLO12n-LC classification, and DeepSeek LLM conversational control. Completed 6 months early. Published at IVCNZ 2025.",
+      "Master's thesis — build a virtual try-on system with limited compute. Had to run on a Raspberry Pi 5, not a cloud GPU. Combined lightweight YOLO classification with LoRA fine-tuning and local LLM control, trading model size for practical deployability. Published at IVCNZ 2025. 94.2% classification accuracy, <10s inference on Pi, completed 6 months early.",
     coverImage: "/projects/chatclothes/arch.png",
     images: [
       { src: "/projects/chatclothes/arch.png", caption: "System Architecture" },
@@ -94,7 +94,7 @@ export const projects: ProjectData[] = [
     period: "2018 – 2024",
     role: "System Designer, Developer & Team Lead",
     summary:
-      "Full-stack IoT smart manufacturing platform for garment factories. Spring Cloud microservices + Android shop-floor terminals + Vue.js dashboards. Deployed across 10+ factory sites, led 6-person team.",
+      "Garment factories needed real-time production tracking across multiple sites. Factory floors have unreliable networks, non-technical operators, and hardware from different vendors (RFID, scales, conveyors). Built a Spring Cloud backend with offline-capable Android terminals and Vue.js dashboards, designed for graceful degradation. Deployed to 5+ factory sites, 30%+ efficiency gain, won Hebei Provincial Science & Technology Award.",
     coverImage: "/projects/smart-factory/mom-quality-station.png",
     images: [
       { src: "/projects/smart-factory/mom-quality-station.png", caption: "Quality Station" },
@@ -130,7 +130,7 @@ export const projects: ProjectData[] = [
       "MySQL", "Redis", "MongoDB", "Docker", "Jenkins", "ActiveMQ", "Kafka",
     ],
     results:
-      "10+ factory sites, 30%+ efficiency gain, 6-person team, hundreds of daily workers",
+      "5+ factory sites, 30%+ efficiency gain, 6-person team, hundreds of daily workers",
     problem:
       "Garment factories lack real-time production visibility — electronic scales need manual reading, production data entry is error-prone, and cross-site coordination is slow.",
     solution:
@@ -138,7 +138,7 @@ export const projects: ProjectData[] = [
     architecture:
       "Android app + Vue.js web → Nginx → Spring Cloud (MyBatis) → MySQL/Redis/MongoDB → IoT hardware (RFID, scales, conveyors via RS232/RS485)",
     highlights: [
-      "Scaled from single-site pilot to 10+ factory deployments across multiple regions",
+      "Scaled from single-site pilot to 5+ factory deployments across multiple regions",
       "Event-driven service coordination using ActiveMQ and Kafka to decouple production workflows",
       "Replaced manual releases with Jenkins + GitLab CI/CD pipeline",
       "Serial-to-WebSocket bridge for browser weight auto-fill, eliminating read-and-retype steps",
@@ -156,7 +156,7 @@ export const projects: ProjectData[] = [
     period: "2014 – 2024",
     role: "Developer & System Designer",
     summary:
-      "Android-led enterprise IM evolving from standalone tool to multi-platform system (Android/Web/PC). 5,000 DAU, sub-200ms latency, 500K+ daily messages across 5 subsystems. Migrated from legacy C++ to cloud IM, eliminating 90%+ defects. 10-year lifecycle.",
+      "Internal messaging tool for 5,000 employees had chronic stability issues. Legacy C++ core was unmaintainable — migration had to happen without downtime or message loss. Incremental migration to Spring Cloud + Kotlin Android client, keeping the NDK transport layer for low-latency delivery while replacing everything around it. 90%+ defect elimination, <200ms latency, 500K+ daily messages, ran stable for 10 years.",
     coverImage: "/projects/enterprise-messaging/shop-smart-homepage-optimized.png",
     images: [
       { src: "/projects/enterprise-messaging/shop-smart-homepage-optimized.png", caption: "App Homepage" },

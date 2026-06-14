@@ -169,9 +169,8 @@ export default function ProjectsPage() {
           <h1 className="text-4xl font-bold tracking-tight">Projects</h1>
         </div>
         <p className="text-lg text-muted-foreground max-w-2xl">
-          Selected work demonstrating architecture, problem-solving, and
-          engineering expertise across AI, IoT, mobile, and backend systems.
-          Click any project for a detailed case study.
+          19 projects across a decade of production delivery. Each one solved a
+          specific problem under specific constraints.
         </p>
       </div>
 

@@ -20,20 +20,18 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Leo Zhang | Senior Software Engineer — Android, AI, Full Stack",
+    default: "Leo Zhang — I build systems that need to work",
     template: "%s | Leo Zhang",
   },
   description:
-    "Full-stack software engineer with 10+ years shipping production software across Android, Java backends, and AI integration. Master of Computer and Information Sciences, AUT — First Class Honours. Industrial IoT, enterprise messaging, applied computer vision.",
+    "Full-stack engineer with a decade of shipping across factory automation, enterprise messaging, and applied AI. Based in Auckland, NZ.",
   keywords: [
     "Leo Zhang",
     "Yuchao Zhang",
-    "Android Developer",
-    "AI Engineer",
-    "Full Stack Developer",
+    "Full Stack Engineer",
     "Software Engineer",
-    "Kotlin",
-    "Jetpack Compose",
+    "Android",
+    "AI Engineer",
     "Spring Cloud",
     "Auckland",
     "New Zealand",
@@ -46,17 +44,17 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
   },
   openGraph: {
-    title: "Leo Zhang — Senior Software Engineer | Portfolio",
+    title: "Leo Zhang — I build systems that need to work",
     description:
-      "10+ years shipping production software across Android, Java backends, and AI. Master of Computer and Information Sciences, AUT — First Class Honours.",
+      "Full-stack engineer with a decade of shipping across factory automation, enterprise messaging, and applied AI. Based in Auckland, NZ.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Leo Zhang — Senior Software Engineer | Portfolio",
+    title: "Leo Zhang — I build systems that need to work",
     description:
-      "10+ years shipping production software across Android, Java backends, and AI. Master of Computer and Information Sciences, AUT — First Class Honours.",
+      "Full-stack engineer with a decade of shipping across factory automation, enterprise messaging, and applied AI. Based in Auckland, NZ.",
   },
   robots: {
     index: true,

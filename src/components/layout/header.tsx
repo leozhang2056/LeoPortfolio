@@ -36,7 +36,7 @@ export function Header() {
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
           <span className="text-xl font-bold tracking-tight">Leo Zhang</span>
-          <span className="hidden sm:inline text-sm text-muted-foreground font-normal">/ Software Engineer</span>
+          <span className="hidden sm:inline text-sm text-muted-foreground font-normal">/ Systems Engineer</span>
         </Link>
 
         {/* Desktop Navigation */}
