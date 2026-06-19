@@ -27,7 +27,7 @@ export const projects: ProjectData[] = [
     period: "Nov 2024 – Apr 2025",
     role: "AI Engineer & Python Developer (Independent)",
     summary:
-      "Master's thesis — build a virtual try-on system with limited compute. Had to run on a Raspberry Pi 5, not a cloud GPU. Combined lightweight YOLO classification with LoRA fine-tuning and local LLM control, trading model size for practical deployability. Published at IVCNZ 2025. 94.2% classification accuracy, <10s inference on Pi, completed 6 months early.",
+      "Master's thesis — a multimodal virtual try-on system combining lightweight YOLO classification with LoRA fine-tuned diffusion models and LLM agent control. Published at IVCNZ 2025. 94.2% classification accuracy, FID 28.5, completed 6 months early.",
     coverImage: "/projects/chatclothes/arch.png",
     images: [
       { src: "/projects/chatclothes/arch.png", caption: "System Architecture" },
@@ -41,7 +41,6 @@ export const projects: ProjectData[] = [
       { src: "/projects/chatclothes/slide08_data_flow.PNG", caption: "Data Flow" },
       { src: "/projects/chatclothes/slide09_system_components.PNG", caption: "System Components" },
       { src: "/projects/chatclothes/slide10_pipeline_overview.PNG", caption: "Pipeline Overview" },
-      { src: "/projects/chatclothes/slide11_edge_deployment.PNG", caption: "Edge Deployment" },
       { src: "/projects/chatclothes/slide12_multimodal_input.PNG", caption: "Multimodal Input" },
       { src: "/projects/chatclothes/slide13_comfyui_workflow.PNG", caption: "ComfyUI Workflow" },
       { src: "/projects/chatclothes/slide14_dify_integration.PNG", caption: "Dify LLM Integration" },
@@ -65,26 +64,25 @@ export const projects: ProjectData[] = [
     icon: "Sparkles",
     tech: [
       "Python", "PyTorch", "OOTDiffusion", "LoRA", "YOLO12n-LC",
-      "ComfyUI", "Dify", "DeepSeek", "FastAPI", "Raspberry Pi 5",
+      "ComfyUI", "Dify", "DeepSeek", "FastAPI",
     ],
     results:
-      "FID 28.5 (19%↑), 75% hand artifact reduction, 94.2% accuracy, <10s Pi latency, 87% user success (50 users)",
+      "FID 28.5 (19%↑), 75% hand artifact reduction, 94.2% accuracy, 87% user success (50 users)",
     problem:
-      "Fashion e-commerce lacks interactive, multimodal try-on experiences that work on edge devices.",
+      "Fashion e-commerce lacks interactive, multimodal try-on experiences with natural language interaction.",
     solution:
-      "Multimodal AI VTON: OOTDiffusion with LoRA fine-tuning for pose-aligned generation, YOLO12n-LC lightweight classifier (5MB, 8x smaller), DeepSeek LLM + RAG for natural language to structured prompts.",
+      "Multimodal AI VTON: OOTDiffusion with LoRA fine-tuning for pose-aligned generation, YOLO12n-LC lightweight classifier (5MB, 8x smaller), DeepSeek LLM agent via Dify workflow for natural language to structured prompts.",
     architecture:
-      "Python AI pipeline (PyTorch/ComfyUI/Dify) → FastAPI backend → PWA Android frontend → Raspberry Pi 5 edge deployment",
+      "Python AI pipeline (PyTorch/ComfyUI/Dify) → FastAPI backend → PWA Android frontend",
     highlights: [
-      "Shipped handheld-facing PWA control UX for diffusion/LLM jobs on mobile alongside Pi deployments",
       "Applied LoRA fine-tuning to OOTDiffusion for enhanced pose alignment and texture reconstruction",
-      "Optimized YOLO12n to YOLO12n-LC for on-device and resource-constrained targets",
+      "Built Dify workflow orchestrating LLM agent + diffusion pipeline + classification",
+      "Optimized YOLO12n to YOLO12n-LC for resource-constrained targets",
       "Orchestrated DeepSeek LLM via Ollama for natural language control",
-      "Deployed full system on Raspberry Pi 5 for offline-capable inference",
       "Thesis passed with First Class Honours, published at IVCNZ 2025",
     ],
     lessons:
-      "Model compression for edge deployment is critical; multimodal alignment needs iterative tuning; LoRA fine-tuning achieves significant quality gains without modifying the backbone.",
+      "Multimodal alignment needs iterative tuning; LoRA fine-tuning achieves significant quality gains without modifying the backbone; Dify workflow orchestration simplifies complex AI pipelines.",
     featured: true,
   },
   {

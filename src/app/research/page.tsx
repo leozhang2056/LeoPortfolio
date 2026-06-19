@@ -7,12 +7,12 @@ import { Lightbulb, Brain, Share2, ArrowRight } from "lucide-react";
 
 const insights = [
   {
-    title: "Why I Bet on Local-First AI",
-    category: "AI Philosophy",
+    title: "Building an AI Agent Pipeline with Dify and OOTDiffusion",
+    category: "AI Engineering",
     date: "2025-03",
     excerpt:
-      "After deploying ChatClothes on Raspberry Pi 5, I'm convinced the future is local-first: privacy, latency, and cost all favor edge inference. Cloud is for training; edge is for serving.",
-    tags: ["Local AI", "Edge Computing", "Privacy"],
+      "Building ChatClothes taught me that multimodal AI systems need careful orchestration between vision and language. Using Dify as the workflow engine to coordinate an LLM agent, diffusion model, and classification pipeline turned a research prototype into a coherent system. The agent design pattern — where the LLM decides which tools to invoke based on user intent — was the key breakthrough.",
+    tags: ["AI Agent", "Dify", "Workflow Orchestration"],
     readTime: "5 min read",
   },
   {
@@ -47,8 +47,8 @@ const insights = [
     category: "AI Engineering",
     date: "2024-11",
     excerpt:
-      "Compressing YOLO12n to YOLO12n-LC gave 94.2% accuracy at 8x smaller size — but the real win was <10s inference on Raspberry Pi 5. The lesson: quantization + distillation > architecture search for edge deployment.",
-    tags: ["Model Compression", "Edge AI", "YOLO"],
+      "Compressing YOLO12n to YOLO12n-LC gave 94.2% accuracy at 8x smaller size while keeping inference under 35ms per frame. The lesson: quantization + distillation beats architecture search when you need both speed and accuracy.",
+    tags: ["Model Compression", "YOLO", "Optimization"],
     readTime: "9 min read",
   },
   {
