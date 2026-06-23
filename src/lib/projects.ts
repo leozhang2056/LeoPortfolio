@@ -30,8 +30,6 @@ export const projects: ProjectData[] = [
       "Master's thesis — a multimodal virtual try-on system combining lightweight YOLO classification with LoRA fine-tuned diffusion models and LLM agent control. Published at IVCNZ 2025. 94.2% classification accuracy, FID 28.5, completed 6 months early.",
     coverImage: "/projects/chatclothes/arch.png",
     images: [
-      { src: "/projects/chatclothes/arch.png", caption: "System Architecture" },
-      { src: "/projects/chatclothes/demo.png", caption: "Live Demo" },
       { src: "/projects/chatclothes/slide02_yolo_detection.PNG", caption: "YOLO12n-LC Detection" },
       { src: "/projects/chatclothes/slide03_pose_estimation.PNG", caption: "Pose Estimation" },
       { src: "/projects/chatclothes/slide04_clothing_segmentation.PNG", caption: "Clothing Segmentation" },
