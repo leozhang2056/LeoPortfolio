@@ -11,7 +11,7 @@ const insights = [
     category: "AI Engineering",
     date: "2025-03",
     excerpt:
-      "Building ChatClothes taught me that multimodal AI systems need careful orchestration between vision and language. Using Dify as the workflow engine to coordinate an LLM agent, diffusion model, and classification pipeline turned a research prototype into a coherent system. The agent design pattern — where the LLM decides which tools to invoke based on user intent — was the key breakthrough.",
+      "Building ChatClothes taught me that multimodal AI lives or dies on orchestration. Dify coordinated an LLM agent, diffusion pipeline, and lightweight classifier across two free-tier GPU servers — turning three separate models into one conversational try-on system.",
     tags: ["AI Agent", "Dify", "Workflow Orchestration"],
     readTime: "5 min read",
   },
@@ -20,7 +20,7 @@ const insights = [
     category: "System Design",
     date: "2024-11",
     excerpt:
-      "Six years running Spring Cloud across 10+ factories taught me: service boundaries that look clean on paper become debugging nightmares on the factory floor. Event-driven is powerful but demands rigorous contract testing.",
+      "Six years running Spring Cloud across 5+ factory sites taught me: service boundaries that look clean on paper become debugging nightmares when a serial scale stops reporting and the production line stalls. Event-driven is powerful — but contract testing is not optional.",
     tags: ["Microservices", "Event-Driven", "Industrial IoT"],
     readTime: "8 min read",
   },
@@ -29,7 +29,7 @@ const insights = [
     category: "Mobile Engineering",
     date: "2024-09",
     excerpt:
-      "After 10 years of Android IM, I've tried every abstraction: WebSocket, Firebase, native socket wrappers. For true sub-200ms delivery at scale with 5K DAU, a custom NDK TCP/UDP transport layer remains unbeatable.",
+      "After 10 years of Android IM, I've touched every abstraction: WebSocket, Firebase, Easemob, native wrappers. For consistent sub-200ms delivery at 5K DAU, a custom NDK TCP/UDP transport layer remains the only reliable answer.",
     tags: ["Android NDK", "TCP/UDP", "Real-time"],
     readTime: "6 min read",
   },
@@ -38,16 +38,16 @@ const insights = [
     category: "Product Thinking",
     date: "2024-06",
     excerpt:
-      "Hundreds of workers using shop-floor apps in noisy, gloved, time-pressured environments changed how I think about mobile design. Large touch targets, offline-first, scan-centric workflows — not optional.",
+      "Hundreds of factory workers using Android terminals in noisy, gloved, time-pressured environments rewired how I design mobile interfaces. Large touch targets, offline-first, serial bridge for weight auto-fill — these aren't preferences, they're survival.",
     tags: ["Industrial UX", "Offline-First", "Field Work"],
     readTime: "7 min read",
   },
   {
-    title: "Model Compression: YOLO12n-LC and the 8x Trade-off",
+    title: "YOLO12n-LC: 8× Smaller, 94% Accuracy, 35ms on Raspberry Pi",
     category: "AI Engineering",
     date: "2024-11",
     excerpt:
-      "Compressing YOLO12n to YOLO12n-LC gave 94.2% accuracy at 8x smaller size while keeping inference under 35ms per frame. The lesson: quantization + distillation beats architecture search when you need both speed and accuracy.",
+      "Training YOLO12n-LC for garment classification: 5MB model (8× smaller than the 40MB base), 94.2% accuracy, 35ms inference on Raspberry Pi 5. Channel reduction + ARM quantization — not architecture search — got us there.",
     tags: ["Model Compression", "YOLO", "Optimization"],
     readTime: "9 min read",
   },
@@ -56,7 +56,7 @@ const insights = [
     category: "Leadership",
     date: "2024-03",
     excerpt:
-      "Managing a distributed team across China and New Zealand taught me: explicit contracts, shared rituals, and protecting focus time matter more than any methodology. Async-first communication isn't a constraint — it's a feature.",
+      "Leading a 6-person cross-functional team across time zones taught me: clear ownership, shared demos every week, and protecting deep work time matter more than any methodology. Async-first coordination is a feature, not a compromise.",
     tags: ["Team Leadership", "Remote Work", "Cross-cultural"],
     readTime: "5 min read",
   },
@@ -71,7 +71,7 @@ export default function ResearchPage() {
           <h1 className="text-4xl font-bold tracking-tight">Research & Insights</h1>
         </div>
         <p className="text-lg text-muted-foreground max-w-2xl">
-          Technical reflections, lessons learned, and evolving thinking from 10+ years
+          Technical reflections, production lessons, and evolving thinking from a decade
           building production systems across Android, backend, AI, and industrial IoT.
         </p>
       </header>

@@ -14,32 +14,32 @@ interface HighlightItem {
 
 const highlights: HighlightItem[] = [
   {
-    counter: { value: 19, suffix: "" },
-    label: "projects across 6 domains — factory, messaging, IoT, mobile, AI, web",
+    counter: { value: 21, suffix: "" },
+    label: "projects shipped — factory MES, enterprise IM, IoT, mobile GIS, AI research",
     color: "text-blue-500",
     bgColor: "bg-blue-500",
   },
   {
     counter: { value: 1, suffix: "st", prefix: "" },
-    label: "Class Honours — Master's completed 6 months early, published research",
+    label: "Class Honours — Master's at AUT, thesis completed 6 months early, published at IVCNZ 2025",
     color: "text-purple-500",
     bgColor: "bg-purple-500",
   },
   {
     counter: { value: 5, suffix: "+" },
-    label: "factory sites — smart manufacturing platform running in production",
+    label: "factory sites — smart manufacturing platform serving hundreds of workers daily",
     color: "text-green-500",
     bgColor: "bg-green-500",
   },
   {
     counter: { value: 5000, formatFn: (n: number) => n.toLocaleString() },
-    label: "daily users — messaging platform, <200ms latency, 10-year uptime",
+    label: "daily active users — enterprise messaging, <200ms latency, <2% downtime over 10 years",
     color: "text-orange-500",
     bgColor: "bg-orange-500",
   },
   {
     counter: { value: 90, suffix: "%" },
-    label: "defect reduction — legacy C++ to cloud IM migration, zero downtime",
+    label: "defect elimination — legacy C++ IM to cloud migration, zero-downtime cutover",
     color: "text-pink-500",
     bgColor: "bg-pink-500",
   },
@@ -62,32 +62,33 @@ export function AboutSection() {
             />
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            I started my career building streaming infrastructure for a small
-            IoT company in China. Over the next decade, the systems I worked on
-            kept getting more complex — from media servers to factory automation
-            platforms, from enterprise messaging to AI research.
+            I started my career writing C++ streaming cores and ASP.NET admin
+            backends for a small IoT start-up in China. Over the next decade,
+            the systems grew with the company — from live-streaming chat rooms
+            to factory automation, from enterprise messaging to AI research.
           </p>
           <p className="mt-4 text-muted-foreground leading-relaxed">
-            What I learned across all of it: the hard part is rarely the code
-            itself. It&apos;s figuring out where a system will fail, designing for
-            that failure, and building something a team can actually maintain
-            after you leave. I&apos;ve applied that thinking to 19 projects across
-            six different domains — and it&apos;s the skill I value most.
+            Every project taught me the same lesson: the hard part isn't writing
+            code — it's making sure it keeps working when the network drops, the
+            database outgrows the server, or the only person who understands it
+            leaves. I've designed for those failures across 21 projects in 6
+            domains — factory MES, enterprise IM, IoT gateways, mobile field
+            apps, live streaming, and applied AI.
           </p>
           <p className="mt-4 text-muted-foreground leading-relaxed">
-            I recently completed a Master&apos;s at AUT in Auckland, where I built
-            an AI virtual try-on system and published at IVCNZ 2025. Now I&apos;m
-            looking for a team that values engineering judgment over keyword
-            matching — someone who needs systems that work under real constraints.
+            I recently completed a Master's at AUT in Auckland with First Class
+            Honours, building a multimodal AI virtual try-on system and publishing
+            at IVCNZ 2025. Now I'm looking for a team that values systems that
+            actually work under real constraints — not just on a whiteboard.
           </p>
         </ScrollReveal>
 
         {/* Right — highlight cards */}
-        <StaggerContainer staggerDelay={0.1} direction="right">
+        <StaggerContainer staggerDelay={0.1} direction="right" className="mt-20">
           {highlights.map((h, i) => (
             <motion.div
               key={i}
-              className="flex items-start gap-4 p-4 rounded-xl border bg-card hover:shadow-md transition-shadow overflow-hidden relative"
+              className="flex items-start gap-4 p-4 rounded-xl border bg-card hover:shadow-md transition-shadow overflow-hidden relative mb-1.5"
               whileHover={{ x: 4 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
             >

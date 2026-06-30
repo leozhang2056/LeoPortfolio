@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
+  Network,
   Layers,
   Sparkles,
   Factory,
@@ -23,6 +24,7 @@ import {
   Search,
   Building2,
   GraduationCap,
+  Gauge,
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
@@ -50,6 +52,7 @@ const iconMap: Record<string, LucideIcon> = {
   Search,
   Building2,
   GraduationCap,
+  Gauge,
   Layers,
 };
 

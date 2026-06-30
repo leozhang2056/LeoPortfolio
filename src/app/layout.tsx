@@ -20,11 +20,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Leo Zhang — I build systems that need to work",
+    default: "Leo Zhang — Full-stack Engineer | Android · Backend · IoT · AI",
     template: "%s | Leo Zhang",
   },
   description:
-    "Full-stack engineer with a decade of shipping across factory automation, enterprise messaging, and applied AI. Based in Auckland, NZ.",
+    "Full-stack engineer with 10+ years shipping Android, backend, IoT, and AI systems. Factory floors to research labs — I build things that work. Based in Auckland, NZ.",
   keywords: [
     "Leo Zhang",
     "Yuchao Zhang",
