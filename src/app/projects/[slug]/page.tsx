@@ -22,6 +22,8 @@ import {
   Search,
   Building2,
   GraduationCap,
+  Network,
+  Gauge,
   Layers,
   type LucideIcon,
 } from "lucide-react";
@@ -50,6 +52,7 @@ const iconMap: Record<string, LucideIcon> = {
   Search,
   Building2,
   GraduationCap,
+  Gauge,
   Layers,
 };
 
@@ -133,13 +136,32 @@ export default async function ProjectDetailPage({
         </p>
       </section>
 
-      {/* Key Metrics */}
-      <section className="mb-10">
-        <div className="rounded-lg border border-border/50 bg-muted/30 p-4 flex items-center gap-3">
-          <div className="h-2.5 w-2.5 rounded-full bg-green-500 shrink-0" />
-          <p className="text-sm font-medium">{project.results}</p>
-        </div>
-      </section>
+      {/* Key Metrics — Structured Grid */}
+      {project.keyMetrics && project.keyMetrics.length > 0 && (
+        <section className="mb-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {project.keyMetrics.map((m, i) => (
+              <div
+                key={i}
+                className="rounded-lg border border-border/50 bg-muted/30 p-3 text-center"
+              >
+                <p className="text-lg font-bold text-primary">{m.value}</p>
+                <p className="text-xs text-muted-foreground mt-1">{m.label}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Key Results — Fallback */}
+      {!project.keyMetrics && (
+        <section className="mb-10">
+          <div className="rounded-lg border border-border/50 bg-muted/30 p-4 flex items-center gap-3">
+            <div className="h-2.5 w-2.5 rounded-full bg-green-500 shrink-0" />
+            <p className="text-sm font-medium">{project.results}</p>
+          </div>
+        </section>
+      )}
 
       {/* Problem / Solution / Architecture */}
       {(project.problem || project.solution || project.architecture) && (
